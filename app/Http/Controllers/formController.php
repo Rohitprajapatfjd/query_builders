@@ -13,6 +13,15 @@ class formController extends Controller
     }
 
    public function addUser(Request $req){
+          
+    $req->validate([
+        'fullname'=> 'required',
+        'email'=> 'required|email',
+        'mobile_no'=>'required|numeric|digits:10',
+        'age'=> 'required|numeric',
+        'city'=>'required'
+    ]);
+
        $add = DB::table('adduser')->insertOrIgnore([
              'fullname'=>$req->fullname,
              'email'=>$req->email,
